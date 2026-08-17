@@ -1,4 +1,4 @@
-const CONFIG={SUPABASE_URL:"https://supabase.com/dashboard/project/ehhsudxrjgkzwousvmpg",SUPABASE_ANON_KEY:"sb_publishable_8kTVSQFc5Eh3aLF8cTLcUA_YvyKLtzM"};
+const CONFIG={SUPABASE_URL:"https://ehhsudxrjgkzwousvmpg.supabase.co",SUPABASE_ANON_KEY:"sb_publishable_8kTVSQFc5Eh3aLF8cTLcUA_YvyKLtzM"};
 const configured=!CONFIG.SUPABASE_URL.startsWith("YOUR_")&&!CONFIG.SUPABASE_ANON_KEY.startsWith("YOUR_");
 const sb=configured?supabase.createClient(CONFIG.SUPABASE_URL,CONFIG.SUPABASE_ANON_KEY):null;
 let mode="login",currentReturn=null;

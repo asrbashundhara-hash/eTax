@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TaxReturn BD — Digital Tax Return</title>
+<meta name="description" content="TaxReturn BD digital tax return platform">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="brand-mark">৳</span><span><b>TaxReturn</b> BD<small>Digital Tax Return</small></span></a>
+  <nav><a href="#home">Home</a><a href="#return">Return</a><a href="#dashboard">Dashboard</a></nav>
+  <div id="authActions"></div>
+</header>
+
+<main>
+<section id="home" class="hero">
+ <div class="hero-copy">
+  <span class="eyebrow">BANGLADESH · DIGITAL TAX</span>
+  <h1>Your tax return, <span>organized.</span></h1>
+  <p>A secure, browser-based workspace for taxpayer profiles, income, investments, deductions and return tracking.</p>
+  <div class="actions"><button class="btn primary" onclick="showAuth('signup')">Create account</button><button class="btn ghost" onclick="showAuth('login')">Sign in</button></div>
+ </div>
+ <div class="hero-card">
+  <div class="mini-head"><span>RETURN WORKSPACE</span><i>●</i></div>
+  <div class="tax-number">৳ <strong id="heroTax">0</strong></div>
+  <div class="muted">Estimated payable tax</div>
+  <div class="meter"><span></span></div>
+  <div class="mini-grid"><div><b>Income</b><small>Organized</small></div><div><b>Validation</b><small>Ready</small></div><div><b>Status</b><small>Draft</small></div></div>
+ </div>
+</section>
+
+<section class="feature-grid">
+ <article><span>01</span><h3>Taxpayer profile</h3><p>Keep identity and return information in one place.</p></article>
+ <article><span>02</span><h3>Return builder</h3><p>Enter income, rebate, expenditure, assets and liabilities.</p></article>
+ <article><span>03</span><h3>Validation</h3><p>Catch missing and inconsistent information before submission.</p></article>
+ <article><span>04</span><h3>Persistent records</h3><p>Your records are stored in a real Postgres database.</p></article>
+</section>
+
+<section id="dashboard" class="app-section hidden">
+ <div class="section-head"><div><span class="eyebrow">WORKSPACE</span><h2>Taxpayer dashboard</h2></div><button class="btn ghost" onclick="signOut()">Sign out</button></div>
+ <div id="dashboardContent"></div>
+</section>
+
+<section id="return" class="app-section hidden">
+ <div class="section-head"><div><span class="eyebrow">RETURN BUILDER</span><h2>Create / edit return</h2></div><button class="btn ghost" onclick="location.hash='dashboard'">Back</button></div>
+ <form id="returnForm" class="form-grid">
+  <label>Tax year<select name="tax_year"><option>2025-2026</option><option>2026-2027</option></select></label>
+  <label>Employment income<input name="employment_income" type="number" min="0" step="0.01" value="0"></label>
+  <label>Business income<input name="business_income" type="number" min="0" step="0.01" value="0"></label>
+  <label>Rental income<input name="rental_income" type="number" min="0" step="0.01" value="0"></label>
+  <label>Financial income<input name="financial_income" type="number" min="0" step="0.01" value="0"></label>
+  <label>Capital gain<input name="capital_gain" type="number" min="0" step="0.01" value="0"></label>
+  <label>Other income<input name="other_income" type="number" min="0" step="0.01" value="0"></label>
+  <label>Investment / rebate<input name="investment" type="number" min="0" step="0.01" value="0"></label>
+  <label>Expenditure<input name="expenditure" type="number" min="0" step="0.01" value="0"></label>
+  <label>Assets<input name="assets" type="number" min="0" step="0.01" value="0"></label>
+  <label>Liabilities<input name="liabilities" type="number" min="0" step="0.01" value="0"></label>
+  <label>Withholding tax<input name="withholding" type="number" min="0" step="0.01" value="0"></label>
+  <label>Advance tax<input name="advance_tax" type="number" min="0" step="0.01" value="0"></label>
+  <div class="calc-card"><span>Estimated gross income</span><strong id="gross">৳ 0</strong><small>Illustrative calculation — verify current Bangladesh tax rules before filing.</small></div>
+  <div class="calc-card"><span>Estimated payable</span><strong id="payable">৳ 0</strong><small>Uses the configurable example calculation in this build.</small></div>
+  <div class="form-actions"><button class="btn ghost" type="button" onclick="saveReturn('DRAFT')">Save draft</button><button class="btn primary" type="button" onclick="saveReturn('SUBMITTED')">Validate & submit</button></div>
+ </form>
+ <div id="returnMessage"></div>
+</section>
+
+<section id="auth" class="modal hidden"><div class="modal-box"><button class="close" onclick="hideAuth()">×</button><span class="eyebrow" id="authEyebrow">ACCOUNT</span><h2 id="authTitle">Sign in</h2><form id="authForm"><label>Email<input id="email" type="email" required></label><label>Password<input id="password" type="password" minlength="8" required></label><label id="nameWrap" class="hidden">Full name<input id="fullName"></label><button class="btn primary full" id="authSubmit">Sign in</button></form><p id="authSwitch"></p><div id="authMsg"></div></div></section>
+</main>
+<footer><span>TaxReturn BD</span><span>Independent platform · Not an NBR filing gateway</span></footer>
+<script src="assets/app.js"></script>
+</body></html>

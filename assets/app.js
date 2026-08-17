@@ -5,7 +5,7 @@
  */
 const CONFIG = {
   SUPABASE_URL: "https://ehhsudxrjgkzwousvmpg.supabase.co",
-  SUPABASE_PUBLISHABLE_KEY: "PASTE_COMPLETE_SB_PUBLISHABLE_KEY_HERE"
+  SUPABASE_PUBLISHABLE_KEY: "sb_publishable_8kTVSQFc5Eh3aLF8cTLcUA_YvyKLtzM"
 };
 
 let sb = null;

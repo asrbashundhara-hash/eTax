@@ -111,7 +111,8 @@ async function submitAuth(event) {
         email,
         password,
         options: {
-          data: {full_name: $("fullName").value.trim()}
+          emailRedirectTo: window.location.origin + window.location.pathname,
+    data: {full_name: $("fullName").value.trim()}
         }
       });
     } else {
